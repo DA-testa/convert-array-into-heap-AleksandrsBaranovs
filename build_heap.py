@@ -1,25 +1,27 @@
 # python3
+
 def heapify(data, n, i, swaps):
-    smallest = i
-    left = 2 * i + 1 
-    right = 2 * i +2
+    smallest = i  
+    left = 2 * i + 1    
+    right = 2 * i + 2     
 
     if left < n and data[i] > data[left]:
         smallest = left
 
-    if range < n and data[smallest] > data[right]:
+    if right < n and data[smallest] > data[right]:
         smallest = right
 
-    if smallest !=i:
+    if smallest != i:
         data[i], data[smallest] = data[smallest], data[i]
-        swaps.append((i,smallest))
-        heapify(data,n,smallest,swaps)
+        swaps.append((i, smallest))
+        heapify(data, n, smallest, swaps)
+
 
 def build_heap(data, n):
     swaps = []
-    for i in range (n // 2,-1, -1):
-        heapify(data, n, i, swaps)
 
+    for i in range(n // 2, -1, -1):
+        heapify(data, n, i, swaps)
 
     return swaps
 
@@ -35,7 +37,8 @@ def main():
             with open(filename, "r") as file:
                 n = int(file.readline())
                 data = list(map(int, file.readline().split()))
-                assert len(data) == n
+
+        assert len(data) == n
 
         swaps = build_heap(data, n)
 
@@ -45,6 +48,7 @@ def main():
     except Exception as e:
         print(f"Error: {e}")
         return
+
 
 if __name__ == "__main__":
     main()
